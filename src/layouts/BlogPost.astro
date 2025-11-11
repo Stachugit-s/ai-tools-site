@@ -1,56 +1,271 @@
 ---
-import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import Header from '../components/Header.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
+<!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
+			/* Dark Mode Global */
+			:global(body) {
+				background: #0a0a0a;
+				color: #e0e0e0;
 			}
+
+			main {
+				max-width: 900px;
+				margin: 0 auto;
+				padding: 2rem;
+			}
+
+			article {
+				background: rgba(255, 255, 255, 0.03);
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 16px;
+				padding: 3rem;
+				line-height: 1.8;
+			}
+
+			/* Hero Image */
 			.hero-image {
 				width: 100%;
+				border-radius: 12px;
+				margin-bottom: 2rem;
 			}
+
 			.hero-image img {
 				display: block;
-				margin: 0 auto;
+				width: 100%;
+				height: auto;
 				border-radius: 12px;
-				box-shadow: var(--box-shadow);
 			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
+
+			/* Title */
 			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
+				margin-bottom: 1rem;
+				font-size: 2.5rem;
+				font-weight: 800;
+				line-height: 1.2;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
 			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
+
+			/* Date */
 			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+				margin-bottom: 2rem;
+				color: #888;
+				font-size: 0.95rem;
 			}
+
+			/* Last Updated */
 			.last-updated-on {
 				font-style: italic;
+				color: #888;
+			}
+
+			/* Prose Styles (Content) */
+			article :global(h1) {
+				font-size: 2.2rem;
+				font-weight: 800;
+				margin-top: 2.5rem;
+				margin-bottom: 1rem;
+				color: #ffffff;
+			}
+
+			article :global(h2) {
+				font-size: 1.8rem;
+				font-weight: 700;
+				margin-top: 2.5rem;
+				margin-bottom: 1rem;
+				color: #667eea;
+			}
+
+			article :global(h3) {
+				font-size: 1.4rem;
+				font-weight: 600;
+				margin-top: 2rem;
+				margin-bottom: 0.8rem;
+				color: #8b93ea;
+			}
+
+			article :global(h4) {
+				font-size: 1.2rem;
+				font-weight: 600;
+				margin-top: 1.5rem;
+				margin-bottom: 0.6rem;
+				color: #a0a7ea;
+			}
+
+			article :global(p) {
+				color: #b0b0b0;
+				margin-bottom: 1.5rem;
+				font-size: 1.05rem;
+				line-height: 1.8;
+			}
+
+			article :global(strong) {
+				color: #ffffff;
+				font-weight: 700;
+			}
+
+			article :global(em) {
+				color: #d0d0d0;
+				font-style: italic;
+			}
+
+			/* Links */
+			article :global(a) {
+				color: #667eea;
+				text-decoration: none;
+				border-bottom: 1px solid rgba(102, 126, 234, 0.3);
+				transition: all 0.2s;
+			}
+
+			article :global(a:hover) {
+				color: #764ba2;
+				border-bottom-color: #764ba2;
+			}
+
+			/* Lists */
+			article :global(ul),
+			article :global(ol) {
+				margin-bottom: 1.5rem;
+				padding-left: 2rem;
+			}
+
+			article :global(li) {
+				color: #b0b0b0;
+				margin-bottom: 0.8rem;
+				line-height: 1.7;
+			}
+
+			article :global(li strong) {
+				color: #ffffff;
+			}
+
+			/* Tables */
+			article :global(table) {
+				width: 100%;
+				margin: 2rem 0;
+				border-collapse: collapse;
+				background: rgba(255, 255, 255, 0.02);
+				border-radius: 8px;
+				overflow: hidden;
+			}
+
+			article :global(thead) {
+				background: rgba(102, 126, 234, 0.15);
+			}
+
+			article :global(th) {
+				padding: 1rem;
+				text-align: left;
+				font-weight: 700;
+				color: #ffffff;
+				border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+			}
+
+			article :global(td) {
+				padding: 1rem;
+				color: #b0b0b0;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+			}
+
+			article :global(tr:hover) {
+				background: rgba(102, 126, 234, 0.05);
+			}
+
+			/* Code Blocks */
+			article :global(code) {
+				background: rgba(102, 126, 234, 0.15);
+				color: #e0e0e0;
+				padding: 0.2rem 0.5rem;
+				border-radius: 4px;
+				font-family: 'Courier New', monospace;
+				font-size: 0.9em;
+			}
+
+			article :global(pre) {
+				background: rgba(0, 0, 0, 0.4);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				border-radius: 8px;
+				padding: 1.5rem;
+				overflow-x: auto;
+				margin: 1.5rem 0;
+			}
+
+			article :global(pre code) {
+				background: none;
+				padding: 0;
+				color: #e0e0e0;
+			}
+
+			/* Blockquotes */
+			article :global(blockquote) {
+				border-left: 4px solid #667eea;
+				padding-left: 1.5rem;
+				margin: 2rem 0;
+				color: #c0c0c0;
+				font-style: italic;
+				background: rgba(102, 126, 234, 0.05);
+				padding: 1rem 1.5rem;
+				border-radius: 4px;
+			}
+
+			/* Horizontal Rule */
+			article :global(hr) {
+				margin: 3rem 0;
+				border: none;
+				border-top: 1px solid rgba(255, 255, 255, 0.1);
+			}
+
+			/* Disclosure/Footer Note */
+			article :global(p:last-child) {
+				border-top: 1px solid rgba(255, 255, 255, 0.1);
+				padding-top: 2rem;
+				margin-top: 3rem;
+				font-size: 0.95rem;
+				color: #888;
+				font-style: italic;
+			}
+
+			/* Mobile Responsive */
+			@media (max-width: 768px) {
+				article {
+					padding: 2rem 1.5rem;
+				}
+
+				.title {
+					font-size: 2rem;
+				}
+
+				article :global(h1) {
+					font-size: 1.8rem;
+				}
+
+				article :global(h2) {
+					font-size: 1.5rem;
+				}
+
+				article :global(table) {
+					font-size: 0.9rem;
+				}
+
+				article :global(th),
+				article :global(td) {
+					padding: 0.7rem;
+				}
 			}
 		</style>
 	</head>
@@ -60,23 +275,23 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<main>
 			<article>
 				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
 				</div>
 				<div class="prose">
 					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
 						<h1>{title}</h1>
-						<hr />
 					</div>
+					<div class="date">
+						<FormattedDate date={pubDate} />
+						{
+							updatedDate && (
+								<div class="last-updated-on">
+									Last updated on <FormattedDate date={updatedDate} />
+								</div>
+							)
+						}
+					</div>
+					<hr />
 					<slot />
 				</div>
 			</article>

@@ -1,11 +1,10 @@
 ---
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../components/FormattedDate.astro';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -15,73 +14,95 @@ const posts = (await getCollection('blog')).sort(
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={`Blog - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 		<style>
+			:global(body) {
+				background: #0a0a0a;
+				color: #e0e0e0;
+			}
+
 			main {
-				width: 960px;
+				max-width: 1100px;
+				margin: 0 auto;
+				padding: 3rem 2rem;
 			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
+
+			h1 {
+				font-size: 3rem;
+				font-weight: 800;
 				margin-bottom: 1rem;
 				text-align: center;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
 			}
-			ul li:first-child img {
-				width: 100%;
+
+			.subtitle {
+				text-align: center;
+				color: #b0b0b0;
+				font-size: 1.2rem;
+				margin-bottom: 4rem;
 			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
+
+			section {
+				display: grid;
+				gap: 2rem;
 			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
+
+			.post-card {
+				background: rgba(255, 255, 255, 0.03);
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 16px;
+				padding: 2.5rem;
+				transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
 			}
-			ul li a {
-				display: block;
+
+			.post-card:hover {
+				transform: translateY(-5px);
+				border-color: rgba(102, 126, 234, 0.5);
+				box-shadow: 0 10px 40px rgba(102, 126, 234, 0.2);
 			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
+
+			.post-card a {
+				text-decoration: none;
+				color: inherit;
 			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
+
+			.post-card h3 {
+				font-size: 1.8rem;
+				font-weight: 700;
+				margin-bottom: 1rem;
+				color: #667eea;
+				transition: color 0.2s;
 			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
+
+			.post-card:hover h3 {
+				color: #764ba2;
 			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
+
+			.post-card p {
+				color: #b0b0b0;
+				margin-bottom: 1.5rem;
+				line-height: 1.7;
+				font-size: 1.05rem;
 			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
+
+			.post-meta {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				color: #888;
+				font-size: 0.95rem;
+			}
+
+			@media (max-width: 768px) {
+				h1 {
+					font-size: 2.2rem;
 				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
+
+				.post-card {
+					padding: 1.5rem;
 				}
 			}
 		</style>
@@ -89,24 +110,23 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<Header />
 		<main>
+			<h1>All Reviews & Guides</h1>
+			<p class="subtitle">In-depth analysis of AI tools to help you make informed decisions</p>
 			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
+				{
+					posts.map((post) => (
+						<article class="post-card">
+							<a href={`/blog/${post.id.replace('.md', '')}/`}>
+								<h3>{post.data.title}</h3>
+								<p>{post.data.description}</p>
+								<div class="post-meta">
+									<FormattedDate date={post.data.pubDate} />
+									<span style="color: #667eea; font-weight: 700;">Read More →</span>
+								</div>
+							</a>
+						</article>
+					))
+				}
 			</section>
 		</main>
 		<Footer />
