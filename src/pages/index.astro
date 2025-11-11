@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
+import '../styles/global.css';
 
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -14,327 +15,172 @@ const posts = (await getCollection('blog'))
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			/* Dark Mode Global */
-			:global(body) {
-				background: #0a0a0a;
-				color: #e0e0e0;
-				margin: 0;
-				padding: 0;
-			}
-
-			main {
-				background: #0a0a0a;
-			}
-
-			/* Hero Section */
-			.hero {
-				max-width: 900px;
-				margin: 0 auto;
-				padding: 5rem 2rem 4rem;
-				text-align: center;
-			}
-
-			.hero h1 {
-				font-size: 3.5rem;
-				font-weight: 800;
-				margin-bottom: 1.5rem;
-				line-height: 1.1;
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-				-webkit-background-clip: text;
-				-webkit-text-fill-color: transparent;
-				background-clip: text;
-			}
-
-			.hero p {
-				font-size: 1.3rem;
-				color: #b0b0b0;
-				margin-bottom: 2.5rem;
-				line-height: 1.6;
-				max-width: 700px;
-				margin-left: auto;
-				margin-right: auto;
-			}
-
-			.hero .cta {
-				display: inline-block;
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-				color: white;
-				padding: 1rem 2.5rem;
-				border-radius: 50px;
-				text-decoration: none;
-				font-weight: 700;
-				font-size: 1.1rem;
-				transition: transform 0.2s, box-shadow 0.2s;
-				box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
-			}
-
-			.hero .cta:hover {
-				transform: translateY(-2px);
-				box-shadow: 0 6px 30px rgba(102, 126, 234, 0.6);
-			}
-
-			/* Features */
-			.features {
-				max-width: 1100px;
-				margin: 0 auto;
-				padding: 4rem 2rem;
-				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-				gap: 2.5rem;
-			}
-
-			.feature {
-				background: rgba(255, 255, 255, 0.03);
-				border: 1px solid rgba(255, 255, 255, 0.08);
-				border-radius: 16px;
-				padding: 2rem;
-				text-align: center;
-				transition: transform 0.3s, border-color 0.3s;
-			}
-
-			.feature:hover {
-				transform: translateY(-5px);
-				border-color: rgba(102, 126, 234, 0.5);
-			}
-
-			.feature-icon {
-				font-size: 3.5rem;
-				margin-bottom: 1.5rem;
-				display: block;
-			}
-
-			.feature h3 {
-				font-size: 1.4rem;
-				font-weight: 700;
-				margin-bottom: 1rem;
-				color: #ffffff;
-			}
-
-			.feature p {
-				color: #b0b0b0;
-				line-height: 1.6;
-			}
-
-			/* Latest Articles */
-			.articles {
-				max-width: 1100px;
-				margin: 0 auto;
-				padding: 4rem 2rem;
-			}
-
-			.articles h2 {
-				font-size: 2.5rem;
-				font-weight: 800;
-				margin-bottom: 3rem;
-				text-align: center;
-				color: #ffffff;
-			}
-
-			.articles-grid {
-				display: grid;
-				gap: 2rem;
-			}
-
-			.article-card {
-				background: rgba(255, 255, 255, 0.03);
-				border: 1px solid rgba(255, 255, 255, 0.08);
-				border-radius: 16px;
-				padding: 2.5rem;
-				transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-			}
-
-			.article-card:hover {
-				transform: translateY(-5px);
-				border-color: rgba(102, 126, 234, 0.5);
-				box-shadow: 0 10px 40px rgba(102, 126, 234, 0.2);
-			}
-
-			.article-card a {
-				text-decoration: none;
-				color: inherit;
-			}
-
-			.article-card h3 {
-				font-size: 1.6rem;
-				font-weight: 700;
-				margin-bottom: 1rem;
-				color: #667eea;
-				transition: color 0.2s;
-			}
-
-			.article-card:hover h3 {
-				color: #764ba2;
-			}
-
-			.article-card p {
-				color: #b0b0b0;
-				margin-bottom: 1.5rem;
-				line-height: 1.7;
-			}
-
-			.article-meta {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-			}
-
-			.article-date {
-				color: #888;
-				font-size: 0.95rem;
-			}
-
-			.article-link {
-				color: #667eea;
-				font-weight: 700;
-				font-size: 1rem;
-			}
-
-			.view-all {
-				text-align: center;
-				margin-top: 3rem;
-			}
-
-			.view-all a {
-				color: #667eea;
-				font-weight: 700;
-				font-size: 1.2rem;
-				text-decoration: none;
-				transition: color 0.2s;
-			}
-
-			.view-all a:hover {
-				color: #764ba2;
-			}
-
-			/* CTA Section */
-			.cta-section {
-				max-width: 900px;
-				margin: 0 auto;
-				padding: 5rem 2rem;
-				text-align: center;
-				background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-				border-radius: 24px;
-				margin-bottom: 4rem;
-			}
-
-			.cta-section h2 {
-				font-size: 2.5rem;
-				font-weight: 800;
-				margin-bottom: 1.5rem;
-				color: #ffffff;
-			}
-
-			.cta-section p {
-				font-size: 1.2rem;
-				color: #b0b0b0;
-				margin-bottom: 2.5rem;
-			}
-
-			.cta-button {
-				display: inline-block;
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-				color: white;
-				padding: 1rem 2.5rem;
-				border-radius: 50px;
-				text-decoration: none;
-				font-weight: 700;
-				font-size: 1.1rem;
-				transition: transform 0.2s, box-shadow 0.2s;
-				box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
-			}
-
-			.cta-button:hover {
-				transform: translateY(-2px);
-				box-shadow: 0 6px 30px rgba(102, 126, 234, 0.6);
-			}
-
-			/* Mobile Responsive */
-			@media (max-width: 768px) {
-				.hero h1 {
-					font-size: 2.5rem;
-				}
-
-				.hero p {
-					font-size: 1.1rem;
-				}
-
-				.features {
-					grid-template-columns: 1fr;
-					gap: 1.5rem;
-				}
-			}
-		</style>
 	</head>
 	<body>
 		<Header />
-		<main>
-			<!-- Hero Section -->
+		<main class="container">
+			<!-- Hero -->
 			<section class="hero">
-				<h1>Find the Best AI Tools for Your Business</h1>
-				<p>
-					In-depth reviews, comparisons, and guides to help you choose the right AI-powered software. 
-					We test and analyze tools so you don't have to.
+				<h1 class="hero-title">Find the Best AI Tools for Your Needs</h1>
+				<p class="hero-subtitle">
+					Honest reviews and comparisons to help you choose the right software.
+					No fluff, just real insights.
 				</p>
-				<a href="/blog" class="cta">Browse All Reviews →</a>
+				<a href="/blog" class="cta-button">Browse Reviews →</a>
 			</section>
 
-			<!-- Features -->
-			<section class="features">
-				<div class="feature">
-					<span class="feature-icon">📊</span>
-					<h3>Data-Driven Reviews</h3>
-					<p>Real performance metrics and cost analysis from hands-on testing</p>
-				</div>
-				<div class="feature">
-					<span class="feature-icon">✅</span>
-					<h3>Honest Comparisons</h3>
-					<p>Unbiased tool comparisons to help you make the right decision</p>
-				</div>
-				<div class="feature">
-					<span class="feature-icon">🚀</span>
-					<h3>Actionable Guides</h3>
-					<p>Step-by-step strategies for implementing AI tools effectively</p>
-				</div>
-			</section>
-
-			<!-- Latest Articles -->
-			<section class="articles">
-				<h2>Latest Reviews & Guides</h2>
-				<div class="articles-grid">
+			<!-- Latest Posts -->
+			<section class="posts-section">
+				<h2 class="section-title">Latest Articles</h2>
+				<div class="posts-grid">
 					{posts.map((post) => (
-						<article class="article-card">
-							<a href={`/blog/${post.slug}/`}>
+						<article class="post-card">
+							<a href={`/blog/${post.id.replace('.md', '')}/`}>
 								<h3>{post.data.title}</h3>
-								<p>{post.data.description}</p>
-								<div class="article-meta">
-									<span class="article-date">
+								<p class="post-excerpt">{post.data.description}</p>
+								<div class="post-meta">
+									<time datetime={post.data.pubDate.toISOString()}>
 										{new Date(post.data.pubDate).toLocaleDateString('en-US', {
 											year: 'numeric',
 											month: 'long',
 											day: 'numeric'
 										})}
-									</span>
-									<span class="article-link">Read More →</span>
+									</time>
+									<span class="read-more">Read more →</span>
 								</div>
 							</a>
 						</article>
 					))}
 				</div>
 				<div class="view-all">
-					<a href="/blog">View All Articles →</a>
+					<a href="/blog">View all articles →</a>
 				</div>
-			</section>
-
-			<!-- CTA Section -->
-			<section class="cta-section">
-				<h2>Ready to Find Your Perfect AI Tool?</h2>
-				<p>
-					Explore our comprehensive reviews and start making smarter software decisions today.
-				</p>
-				<a href="/blog" class="cta-button">Get Started →</a>
 			</section>
 		</main>
 		<Footer />
+
+		<style>
+			.container {
+				max-width: 1000px;
+				margin: 0 auto;
+				padding: 2rem;
+			}
+
+			.hero {
+				text-align: center;
+				padding: 4rem 0;
+			}
+
+			.hero-title {
+				font-size: 2.5rem;
+				font-weight: 800;
+				margin-bottom: 1rem;
+				color: var(--text-primary);
+				line-height: 1.2;
+			}
+
+			.hero-subtitle {
+				font-size: 1.25rem;
+				color: var(--text-secondary);
+				margin-bottom: 2rem;
+				max-width: 600px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.cta-button {
+				display: inline-block;
+				background: var(--accent);
+				color: white;
+				padding: 0.875rem 2rem;
+				border-radius: 8px;
+				font-weight: 600;
+				transition: background 0.2s;
+			}
+
+			.cta-button:hover {
+				background: var(--accent-hover);
+			}
+
+			.posts-section {
+				margin-top: 4rem;
+			}
+
+			.section-title {
+				font-size: 2rem;
+				font-weight: 700;
+				margin-bottom: 2rem;
+				color: var(--text-primary);
+			}
+
+			.posts-grid {
+				display: grid;
+				gap: 2rem;
+			}
+
+			.post-card {
+				background: var(--bg-secondary);
+				border: 1px solid var(--border-color);
+				border-radius: 12px;
+				padding: 2rem;
+				transition: all 0.2s;
+			}
+
+			.post-card:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+			}
+
+			.post-card a {
+				text-decoration: none;
+				color: inherit;
+			}
+
+			.post-card h3 {
+				font-size: 1.5rem;
+				font-weight: 700;
+				margin-bottom: 0.75rem;
+				color: var(--accent);
+			}
+
+			.post-excerpt {
+				color: var(--text-secondary);
+				margin-bottom: 1rem;
+				line-height: 1.6;
+			}
+
+			.post-meta {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-size: 0.9rem;
+				color: var(--text-muted);
+			}
+
+			.read-more {
+				color: var(--accent);
+				font-weight: 600;
+			}
+
+			.view-all {
+				text-align: center;
+				margin-top: 2rem;
+			}
+
+			.view-all a {
+				color: var(--accent);
+				font-weight: 600;
+			}
+
+			@media (max-width: 768px) {
+				.hero-title {
+					font-size: 2rem;
+				}
+
+				.hero-subtitle {
+					font-size: 1.1rem;
+				}
+			}
+		</style>
 	</body>
 </html>

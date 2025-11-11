@@ -8,109 +8,107 @@ import Footer from '../components/Footer.astro';
 <html lang="en">
 	<head>
 		<BaseHead title="Privacy Policy - AI Tools Hub" description="Privacy Policy" />
-		<style>
-			:global(body) {
-				background: #0a0a0a;
-				color: #e0e0e0;
-			}
-
-			main {
-				max-width: 900px;
-				margin: 0 auto;
-				padding: 3rem 2rem;
-			}
-
-			article {
-				background: rgba(255, 255, 255, 0.03);
-				border: 1px solid rgba(255, 255, 255, 0.08);
-				border-radius: 16px;
-				padding: 3rem;
-				line-height: 1.8;
-			}
-
-			h1 {
-				font-size: 2.5rem;
-				font-weight: 800;
-				margin-bottom: 0.5rem;
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-				-webkit-background-clip: text;
-				-webkit-text-fill-color: transparent;
-				background-clip: text;
-			}
-
-			.date {
-				color: #888;
-				font-size: 0.95rem;
-				margin-bottom: 2.5rem;
-				display: block;
-			}
-
-			h2 {
-				font-size: 1.6rem;
-				font-weight: 700;
-				margin-top: 2.5rem;
-				margin-bottom: 1rem;
-				color: #667eea;
-			}
-
-			p {
-				color: #b0b0b0;
-				margin-bottom: 1.5rem;
-				font-size: 1.05rem;
-			}
-
-			a {
-				color: #667eea;
-				text-decoration: none;
-				transition: color 0.2s;
-			}
-
-			a:hover {
-				color: #764ba2;
-			}
-
-			hr {
-				margin: 3rem 0;
-				border: none;
-				border-top: 1px solid rgba(255, 255, 255, 0.1);
-			}
-
-			.footer-note {
-				color: #888;
-				font-size: 0.95rem;
-				font-style: italic;
-			}
-		</style>
+		<link rel="stylesheet" href="/src/styles/global.css" />
 	</head>
 	<body>
 		<Header />
-		<main>
-			<article>
+		<main class="container">
+			<article class="prose">
 				<h1>Privacy Policy</h1>
-				<span class="date"><strong>Last Updated:</strong> November 11, 2025</span>
+				<p class="date"><strong>Last Updated:</strong> November 11, 2025</p>
 				
 				<h2>Information We Collect</h2>
-				<p>AI Tools Hub operates <strong>https://ai-tools-site-two.vercel.app</strong>. This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our website.</p>
+				<p>AI Tools Hub operates https://ai-tools-site-two.vercel.app. This page informs you of our policies regarding the collection, use, and disclosure of personal data.</p>
 				
 				<h2>Cookies and Tracking</h2>
-				<p>We may use cookies and similar tracking technologies to track activity on our website and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.</p>
+				<p>We may use cookies and tracking technologies. You can refuse cookies via browser settings.</p>
 				
 				<h2>Affiliate Links</h2>
-				<p>Our website contains affiliate links. When you click on these links and make a purchase, we may earn a commission at no additional cost to you. We participate in affiliate programs including <strong>ShareASale</strong> and <strong>Awin</strong>.</p>
+				<p>Our website contains affiliate links. When you make a purchase through these links, we may earn a commission at no additional cost to you. We participate in ShareASale and Awin affiliate programs.</p>
 				
 				<h2>Third-Party Services</h2>
-				<p>We may employ third-party companies and individuals to facilitate our service, provide analytics, or assist us in analyzing how our service is used.</p>
+				<p>We may employ third-party companies for analytics and service facilitation.</p>
 				
-				<h2>Your Rights (GDPR Compliance)</h2>
-				<p>If you are located in the European Economic Area (EEA), you have certain data protection rights. You have the right to access, update, or delete the information we have on you.</p>
+				<h2>Your Rights (GDPR)</h2>
+				<p>If you are in the EEA, you have data protection rights including access, update, or deletion of your information.</p>
 				
 				<h2>Contact Us</h2>
-				<p>If you have questions about this Privacy Policy, please contact us at: <a href="mailto:contact@ai-tools-hub.com">contact@ai-tools-hub.com</a></p>
+				<p>Questions? Contact us at: <a href="mailto:sparkdigitalmedia2@gmail.com">sparkdigitalmedia2@gmail.com</a></p>
 				
 				<hr />
-				<p class="footer-note">This privacy policy is provided for compliance with GDPR and other privacy regulations.</p>
+				<p class="footer-note">This privacy policy is provided for GDPR and privacy regulation compliance.</p>
 			</article>
 		</main>
 		<Footer />
+
+		<style>
+			.container {
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 2rem;
+			}
+
+			.prose {
+				background: var(--bg-secondary);
+				border: 1px solid var(--border-color);
+				border-radius: 12px;
+				padding: 3rem;
+				margin-top: 2rem;
+				line-height: 1.8;
+			}
+
+			.prose h1 {
+				font-size: 2.5rem;
+				font-weight: 800;
+				margin-bottom: 0.5rem;
+				color: var(--text-primary);
+			}
+
+			.date {
+				color: var(--text-muted);
+				font-size: 0.95rem;
+				margin-bottom: 2rem;
+				display: block;
+			}
+
+			.prose h2 {
+				font-size: 1.5rem;
+				font-weight: 700;
+				margin-top: 2rem;
+				margin-bottom: 1rem;
+				color: var(--text-primary);
+			}
+
+			.prose p {
+				color: var(--text-secondary);
+				margin-bottom: 1.5rem;
+			}
+
+			.prose a {
+				color: var(--accent);
+			}
+
+			.prose hr {
+				margin: 2rem 0;
+				border: none;
+				border-top: 1px solid var(--border-color);
+			}
+
+			.footer-note {
+				font-size: 0.9rem;
+				color: var(--text-muted);
+				font-style: italic;
+			}
+
+			@media (max-width: 768px) {
+				.prose {
+					padding: 2rem 1.5rem;
+				}
+
+				.prose h1 {
+					font-size: 2rem;
+				}
+			}
+		</style>
 	</body>
 </html>

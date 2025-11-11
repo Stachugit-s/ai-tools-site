@@ -7,135 +7,52 @@ import Layout from '../layouts/BlogPost.astro';
 	description="About AI Tools Hub"
 	pubDate={new Date('November 11 2025')}
 >
-	<style>
-		/* Dark mode styles */
-		:global(body) {
-			background: #0a0a0a;
-			color: #e0e0e0;
-		}
-
-		article {
-			max-width: 800px;
-			margin: 0 auto;
-			padding: 2rem;
-			line-height: 1.8;
-		}
-
-		h1, h2, h3 {
-			color: #ffffff;
-			font-weight: 600;
-		}
-
-		h1 {
-			font-size: 2.5rem;
-			margin-bottom: 2rem;
-			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-			background-clip: text;
-		}
-
-		h2 {
-			font-size: 1.8rem;
-			margin-top: 2.5rem;
-			margin-bottom: 1rem;
-			color: #667eea;
-		}
-
-		p {
-			color: #b0b0b0;
-			margin-bottom: 1.5rem;
-			font-size: 1.1rem;
-		}
-
-		strong {
-			color: #ffffff;
-			font-weight: 600;
-		}
-
-		ul {
-			list-style: none;
-			padding: 0;
-			margin: 1.5rem 0;
-		}
-
-		li {
-			padding-left: 1.5rem;
-			margin-bottom: 0.8rem;
-			position: relative;
-			color: #b0b0b0;
-		}
-
-		li::before {
-			content: "→";
-			position: absolute;
-			left: 0;
-			color: #667eea;
-			font-weight: bold;
-		}
-
-		.highlight {
-			background: rgba(102, 126, 234, 0.1);
-			border-left: 3px solid #667eea;
-			padding: 1.5rem;
-			border-radius: 8px;
-			margin: 2rem 0;
-		}
-
-		.highlight p {
-			margin-bottom: 0;
-		}
-	</style>
-
-	<article>
-		<h1>About AI Tools Hub</h1>
+	<div class="about-content">
+		<h2>About AI Tools Hub</h2>
 		
 		<p>
-			<strong>AI Tools Hub</strong> is your trusted resource for finding the best AI-powered software solutions. 
-			We test, compare, and review AI tools so you can make informed decisions without wasting time or money.
+			We're a team of developers and content creators who got tired of wasting hours 
+			comparing AI tools. So we built this site to save you time.
 		</p>
 
-		<h2>What We Do</h2>
+		<h3>What We Do</h3>
 		<p>
-			We publish <strong>in-depth, data-driven reviews</strong> of AI writing tools, productivity software, 
-			and SaaS solutions. Our content is designed to help:
+			We test AI tools, compare features, and publish honest reviews. No marketing fluff. 
+			Just real data from real testing.
 		</p>
+
+		<h3>Why Trust Us?</h3>
 		<ul>
-			<li><strong>Content creators</strong> scale their output without sacrificing quality</li>
-			<li><strong>Businesses</strong> find affordable alternatives to expensive tools</li>
-			<li><strong>Startups</strong> leverage AI to compete with bigger companies</li>
-			<li><strong>Individuals</strong> discover tools that save time and boost productivity</li>
+			<li>Every tool is tested hands-on</li>
+			<li>We include both pros and cons</li>
+			<li>We update reviews as tools evolve</li>
+			<li>We disclose all affiliate relationships</li>
 		</ul>
 
-		<h2>Why Trust Us?</h2>
-		<div class="highlight">
-			<p>
-				<strong>Real testing, real data.</strong> We don't just regurgitate marketing copy. 
-				Every tool we review is tested with real workflows, measured for performance, 
-				and analyzed for cost-effectiveness.
-			</p>
-		</div>
-
-		<h2>Our Review Process</h2>
-		<ul>
-			<li>Hands-on testing with real use cases</li>
-			<li>Performance benchmarks and time-to-value analysis</li>
-			<li>Cost comparison across similar tools</li>
-			<li>Honest pros & cons (we highlight limitations)</li>
-			<li>Regular updates as tools evolve</li>
-		</ul>
-
-		<h2>Who We Help</h2>
+		<h3>Who We Help</h3>
 		<p>
-			Whether you're a solo creator, growing startup, or established business, 
-			our guides help you choose the right AI tools for your specific needs and budget.
+			Content creators, developers, marketers, and anyone looking to leverage AI 
+			without wasting money on the wrong tools.
 		</p>
 
+		<h3>Contact</h3>
 		<p>
-			<strong>Questions or suggestions?</strong> Reach us at: 
-			<a href="mailto:contact@ai-tools-hub.com" style="color: #667eea; text-decoration: none;">
-				contact@ai-tools-hub.com
-			</a>
+			Questions or suggestions? Email us at: 
+			<a href="mailto:contact@ai-tools-hub.com">contact@ai-tools-hub.com</a>
 		</p>
-	</article>
+	</div>
+
+	<style>
+		.about-content h3 {
+			margin-top: 2rem;
+		}
+
+		.about-content ul {
+			list-style-position: inside;
+		}
+
+		.about-content li {
+			margin-bottom: 0.5rem;
+		}
+	</style>
 </Layout>

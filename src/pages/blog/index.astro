@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
+import '../../styles/global.css';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -15,120 +16,114 @@ const posts = (await getCollection('blog')).sort(
 <html lang="en">
 	<head>
 		<BaseHead title={`Blog - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main class="container">
+			<div class="blog-header">
+				<h1>All Articles</h1>
+				<p>In-depth reviews and guides to help you choose the right tools</p>
+			</div>
+
+			<section class="posts-list">
+				{posts.map((post) => (
+					<article class="post-item">
+						<a href={`/blog/${post.id.replace('.md', '')}/`}>
+							<div class="post-content">
+								<h2>{post.data.title}</h2>
+								<p class="post-description">{post.data.description}</p>
+								<div class="post-footer">
+									<FormattedDate date={post.data.pubDate} />
+									<span class="read-indicator">→</span>
+								</div>
+							</div>
+						</a>
+					</article>
+				))}
+			</section>
+		</main>
+		<Footer />
+
 		<style>
-			:global(body) {
-				background: #0a0a0a;
-				color: #e0e0e0;
-			}
-
-			main {
-				max-width: 1100px;
+			.container {
+				max-width: 900px;
 				margin: 0 auto;
-				padding: 3rem 2rem;
+				padding: 2rem;
 			}
 
-			h1 {
-				font-size: 3rem;
+			.blog-header {
+				text-align: center;
+				padding: 3rem 0;
+			}
+
+			.blog-header h1 {
+				font-size: 2.5rem;
 				font-weight: 800;
-				margin-bottom: 1rem;
-				text-align: center;
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-				-webkit-background-clip: text;
-				-webkit-text-fill-color: transparent;
-				background-clip: text;
+				margin-bottom: 0.5rem;
+				color: var(--text-primary);
 			}
 
-			.subtitle {
-				text-align: center;
-				color: #b0b0b0;
-				font-size: 1.2rem;
-				margin-bottom: 4rem;
+			.blog-header p {
+				font-size: 1.1rem;
+				color: var(--text-secondary);
 			}
 
-			section {
+			.posts-list {
 				display: grid;
-				gap: 2rem;
+				gap: 1.5rem;
 			}
 
-			.post-card {
-				background: rgba(255, 255, 255, 0.03);
-				border: 1px solid rgba(255, 255, 255, 0.08);
-				border-radius: 16px;
-				padding: 2.5rem;
-				transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+			.post-item {
+				background: var(--bg-secondary);
+				border: 1px solid var(--border-color);
+				border-radius: 12px;
+				transition: all 0.2s;
 			}
 
-			.post-card:hover {
-				transform: translateY(-5px);
-				border-color: rgba(102, 126, 234, 0.5);
-				box-shadow: 0 10px 40px rgba(102, 126, 234, 0.2);
+			.post-item:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 			}
 
-			.post-card a {
+			.post-item a {
+				display: block;
+				padding: 2rem;
 				text-decoration: none;
 				color: inherit;
 			}
 
-			.post-card h3 {
-				font-size: 1.8rem;
+			.post-content h2 {
+				font-size: 1.5rem;
 				font-weight: 700;
+				margin-bottom: 0.75rem;
+				color: var(--accent);
+			}
+
+			.post-description {
+				color: var(--text-secondary);
 				margin-bottom: 1rem;
-				color: #667eea;
-				transition: color 0.2s;
+				line-height: 1.6;
 			}
 
-			.post-card:hover h3 {
-				color: #764ba2;
-			}
-
-			.post-card p {
-				color: #b0b0b0;
-				margin-bottom: 1.5rem;
-				line-height: 1.7;
-				font-size: 1.05rem;
-			}
-
-			.post-meta {
+			.post-footer {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				color: #888;
-				font-size: 0.95rem;
+				color: var(--text-muted);
+				font-size: 0.9rem;
+			}
+
+			.read-indicator {
+				color: var(--accent);
+				font-size: 1.2rem;
+				font-weight: 700;
 			}
 
 			@media (max-width: 768px) {
-				h1 {
-					font-size: 2.2rem;
-				}
-
-				.post-card {
-					padding: 1.5rem;
+				.blog-header h1 {
+					font-size: 2rem;
 				}
 			}
 		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>All Reviews & Guides</h1>
-			<p class="subtitle">In-depth analysis of AI tools to help you make informed decisions</p>
-			<section>
-				{
-					posts.map((post) => (
-						<article class="post-card">
-							<a href={`/blog/${post.id.replace('.md', '')}/`}>
-								<h3>{post.data.title}</h3>
-								<p>{post.data.description}</p>
-								<div class="post-meta">
-									<FormattedDate date={post.data.pubDate} />
-									<span style="color: #667eea; font-weight: 700;">Read More →</span>
-								</div>
-							</a>
-						</article>
-					))
-				}
-			</section>
-		</main>
-		<Footer />
 	</body>
 </html>

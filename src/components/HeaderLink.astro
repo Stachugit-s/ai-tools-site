@@ -4,34 +4,31 @@ import type { HTMLAttributes } from 'astro/types';
 type Props = HTMLAttributes<'a'>;
 
 const { href, class: className, ...props } = Astro.props;
-
 const { pathname } = Astro.url;
 const isActive = href === pathname || href === pathname.replace(/\/$/, '');
 ---
 
-<style>
-	a {
-		display: inline-block;
-		text-decoration: none;
-		color: #b0b0b0;
-		font-weight: 600;
-		font-size: 1rem;
-		padding: 0.5rem 1rem;
-		border-radius: 8px;
-		transition: color 0.2s, background 0.2s;
-	}
-
-	a:hover {
-		color: #667eea;
-		background: rgba(102, 126, 234, 0.1);
-	}
-
-	a.active {
-		color: #667eea;
-		background: rgba(102, 126, 234, 0.15);
-	}
-</style>
-
 <a href={href} class:list={[className, { active: isActive }]} {...props}>
 	<slot />
 </a>
+
+<style>
+	a {
+		color: var(--text-secondary);
+		text-decoration: none;
+		font-weight: 500;
+		padding: 0.5rem 1rem;
+		border-radius: 6px;
+		transition: all 0.2s;
+	}
+
+	a:hover {
+		color: var(--accent);
+		background: var(--bg-hover);
+	}
+
+	a.active {
+		color: var(--accent);
+		background: var(--bg-secondary);
+	}
+</style>

@@ -1,14 +1,28 @@
+<footer>
+	<div class="footer-container">
+		<div class="footer-links">
+			<a href="/">Home</a>
+			<a href="/blog">Blog</a>
+			<a href="/about">About</a>
+			<a href="/privacy">Privacy</a>
+		</div>
+		<p class="copyright">
+			© 2025 AI Tools Hub. All rights reserved.
+		</p>
+	</div>
+</footer>
+
 <style>
 	footer {
-		background: rgba(10, 10, 10, 0.95);
-		border-top: 1px solid rgba(255, 255, 255, 0.08);
-		padding: 3rem 2rem;
 		margin-top: 5rem;
+		border-top: 1px solid var(--border-color);
+		background: var(--bg-secondary);
 	}
 
-	.footer-content {
+	.footer-container {
 		max-width: 1200px;
 		margin: 0 auto;
+		padding: 2rem;
 		text-align: center;
 	}
 
@@ -16,43 +30,23 @@
 		display: flex;
 		justify-content: center;
 		gap: 2rem;
-		margin-bottom: 1.5rem;
+		margin-bottom: 1rem;
 		flex-wrap: wrap;
 	}
 
 	.footer-links a {
-		color: #b0b0b0;
+		color: var(--text-secondary);
 		text-decoration: none;
+		font-weight: 500;
 		transition: color 0.2s;
-		font-weight: 600;
 	}
 
 	.footer-links a:hover {
-		color: #667eea;
+		color: var(--accent);
 	}
 
 	.copyright {
-		color: #888;
-		font-size: 0.95rem;
-	}
-
-	.copyright a {
-		color: #667eea;
-		text-decoration: none;
+		color: var(--text-muted);
+		font-size: 0.9rem;
 	}
 </style>
-
-<footer>
-	<div class="footer-content">
-		<div class="footer-links">
-			<a href="/">Home</a>
-			<a href="/blog">Blog</a>
-			<a href="/about">About</a>
-			<a href="/privacy">Privacy Policy</a>
-		</div>
-		<p class="copyright">
-			© 2025 AI Tools Hub. All rights reserved.<br>
-			Contact: <a href="mailto:contact@ai-tools-hub.com">contact@ai-tools-hub.com</a>
-		</p>
-	</div>
-</footer>

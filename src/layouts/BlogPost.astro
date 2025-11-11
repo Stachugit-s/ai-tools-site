@@ -14,288 +14,241 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			/* Dark Mode Global */
-			:global(body) {
-				background: #0a0a0a;
-				color: #e0e0e0;
-			}
+		<link rel="stylesheet" href="/src/styles/global.css" />
+	</head>
+	<body>
+		<Header />
+		<main class="container">
+			<article class="prose">
+				{heroImage && (
+					<div class="hero-image">
+						<img width={1020} height={510} src={heroImage} alt="" />
+					</div>
+				)}
+				
+				<header class="article-header">
+					<h1>{title}</h1>
+					<div class="article-meta">
+						<FormattedDate date={pubDate} />
+						{updatedDate && (
+							<span class="updated">
+								Updated: <FormattedDate date={updatedDate} />
+							</span>
+						)}
+					</div>
+				</header>
 
-			main {
-				max-width: 900px;
+				<div class="article-content">
+					<slot />
+				</div>
+			</article>
+		</main>
+		<Footer />
+
+		<style>
+			.container {
+				max-width: 800px;
 				margin: 0 auto;
 				padding: 2rem;
 			}
 
-			article {
-				background: rgba(255, 255, 255, 0.03);
-				border: 1px solid rgba(255, 255, 255, 0.08);
-				border-radius: 16px;
+			.prose {
+				background: var(--bg-secondary);
+				border: 1px solid var(--border-color);
+				border-radius: 12px;
 				padding: 3rem;
-				line-height: 1.8;
+				margin-top: 2rem;
 			}
 
-			/* Hero Image */
 			.hero-image {
-				width: 100%;
-				border-radius: 12px;
-				margin-bottom: 2rem;
+				margin: -3rem -3rem 2rem -3rem;
+				border-radius: 12px 12px 0 0;
+				overflow: hidden;
 			}
 
 			.hero-image img {
-				display: block;
 				width: 100%;
 				height: auto;
-				border-radius: 12px;
+				display: block;
 			}
 
-			/* Title */
-			.title {
-				margin-bottom: 1rem;
+			.article-header {
+				margin-bottom: 2rem;
+				padding-bottom: 2rem;
+				border-bottom: 1px solid var(--border-color);
+			}
+
+			.article-header h1 {
 				font-size: 2.5rem;
 				font-weight: 800;
 				line-height: 1.2;
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-				-webkit-background-clip: text;
-				-webkit-text-fill-color: transparent;
-				background-clip: text;
+				margin-bottom: 1rem;
+				color: var(--text-primary);
 			}
 
-			/* Date */
-			.date {
-				margin-bottom: 2rem;
-				color: #888;
+			.article-meta {
+				display: flex;
+				gap: 1rem;
+				color: var(--text-muted);
 				font-size: 0.95rem;
 			}
 
-			/* Last Updated */
-			.last-updated-on {
+			.updated {
 				font-style: italic;
-				color: #888;
 			}
 
-			/* Prose Styles (Content) */
-			article :global(h1) {
-				font-size: 2.2rem;
-				font-weight: 800;
-				margin-top: 2.5rem;
-				margin-bottom: 1rem;
-				color: #ffffff;
-			}
-
-			article :global(h2) {
-				font-size: 1.8rem;
-				font-weight: 700;
-				margin-top: 2.5rem;
-				margin-bottom: 1rem;
-				color: #667eea;
-			}
-
-			article :global(h3) {
-				font-size: 1.4rem;
-				font-weight: 600;
-				margin-top: 2rem;
-				margin-bottom: 0.8rem;
-				color: #8b93ea;
-			}
-
-			article :global(h4) {
-				font-size: 1.2rem;
-				font-weight: 600;
-				margin-top: 1.5rem;
-				margin-bottom: 0.6rem;
-				color: #a0a7ea;
-			}
-
-			article :global(p) {
-				color: #b0b0b0;
-				margin-bottom: 1.5rem;
-				font-size: 1.05rem;
+			/* Content Styles */
+			.article-content {
 				line-height: 1.8;
 			}
 
-			article :global(strong) {
-				color: #ffffff;
+			.article-content :global(h2) {
+				font-size: 1.75rem;
+				font-weight: 700;
+				margin-top: 2.5rem;
+				margin-bottom: 1rem;
+				color: var(--text-primary);
+			}
+
+			.article-content :global(h3) {
+				font-size: 1.4rem;
+				font-weight: 600;
+				margin-top: 2rem;
+				margin-bottom: 0.75rem;
+				color: var(--text-primary);
+			}
+
+			.article-content :global(h4) {
+				font-size: 1.2rem;
+				font-weight: 600;
+				margin-top: 1.5rem;
+				margin-bottom: 0.5rem;
+				color: var(--text-primary);
+			}
+
+			.article-content :global(p) {
+				color: var(--text-secondary);
+				margin-bottom: 1.5rem;
+			}
+
+			.article-content :global(strong) {
+				color: var(--text-primary);
 				font-weight: 700;
 			}
 
-			article :global(em) {
-				color: #d0d0d0;
-				font-style: italic;
+			.article-content :global(a) {
+				color: var(--accent);
+				text-decoration: underline;
+				text-decoration-color: rgba(59, 130, 246, 0.3);
+				text-underline-offset: 2px;
 			}
 
-			/* Links */
-			article :global(a) {
-				color: #667eea;
-				text-decoration: none;
-				border-bottom: 1px solid rgba(102, 126, 234, 0.3);
-				transition: all 0.2s;
+			.article-content :global(a:hover) {
+				text-decoration-color: var(--accent);
 			}
 
-			article :global(a:hover) {
-				color: #764ba2;
-				border-bottom-color: #764ba2;
-			}
-
-			/* Lists */
-			article :global(ul),
-			article :global(ol) {
+			.article-content :global(ul),
+			.article-content :global(ol) {
 				margin-bottom: 1.5rem;
 				padding-left: 2rem;
 			}
 
-			article :global(li) {
-				color: #b0b0b0;
-				margin-bottom: 0.8rem;
-				line-height: 1.7;
+			.article-content :global(li) {
+				color: var(--text-secondary);
+				margin-bottom: 0.5rem;
 			}
 
-			article :global(li strong) {
-				color: #ffffff;
-			}
-
-			/* Tables */
-			article :global(table) {
+			.article-content :global(table) {
 				width: 100%;
-				margin: 2rem 0;
 				border-collapse: collapse;
-				background: rgba(255, 255, 255, 0.02);
+				margin: 2rem 0;
+				background: var(--bg-primary);
 				border-radius: 8px;
 				overflow: hidden;
 			}
 
-			article :global(thead) {
-				background: rgba(102, 126, 234, 0.15);
+			.article-content :global(thead) {
+				background: var(--bg-hover);
 			}
 
-			article :global(th) {
-				padding: 1rem;
+			.article-content :global(th) {
+				padding: 0.75rem 1rem;
 				text-align: left;
-				font-weight: 700;
-				color: #ffffff;
-				border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+				font-weight: 600;
+				color: var(--text-primary);
+				border-bottom: 2px solid var(--border-color);
 			}
 
-			article :global(td) {
-				padding: 1rem;
-				color: #b0b0b0;
-				border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+			.article-content :global(td) {
+				padding: 0.75rem 1rem;
+				color: var(--text-secondary);
+				border-bottom: 1px solid var(--border-color);
 			}
 
-			article :global(tr:hover) {
-				background: rgba(102, 126, 234, 0.05);
-			}
-
-			/* Code Blocks */
-			article :global(code) {
-				background: rgba(102, 126, 234, 0.15);
-				color: #e0e0e0;
-				padding: 0.2rem 0.5rem;
+			.article-content :global(code) {
+				background: var(--bg-hover);
+				color: var(--accent);
+				padding: 0.2rem 0.4rem;
 				border-radius: 4px;
-				font-family: 'Courier New', monospace;
 				font-size: 0.9em;
+				font-family: 'Courier New', monospace;
 			}
 
-			article :global(pre) {
-				background: rgba(0, 0, 0, 0.4);
-				border: 1px solid rgba(255, 255, 255, 0.1);
+			.article-content :global(pre) {
+				background: var(--bg-primary);
+				border: 1px solid var(--border-color);
 				border-radius: 8px;
 				padding: 1.5rem;
 				overflow-x: auto;
 				margin: 1.5rem 0;
 			}
 
-			article :global(pre code) {
+			.article-content :global(pre code) {
 				background: none;
 				padding: 0;
-				color: #e0e0e0;
 			}
 
-			/* Blockquotes */
-			article :global(blockquote) {
-				border-left: 4px solid #667eea;
+			.article-content :global(blockquote) {
+				border-left: 3px solid var(--accent);
 				padding-left: 1.5rem;
 				margin: 2rem 0;
-				color: #c0c0c0;
+				color: var(--text-secondary);
 				font-style: italic;
-				background: rgba(102, 126, 234, 0.05);
-				padding: 1rem 1.5rem;
-				border-radius: 4px;
 			}
 
-			/* Horizontal Rule */
-			article :global(hr) {
-				margin: 3rem 0;
+			.article-content :global(hr) {
+				margin: 2rem 0;
 				border: none;
-				border-top: 1px solid rgba(255, 255, 255, 0.1);
+				border-top: 1px solid var(--border-color);
 			}
 
-			/* Disclosure/Footer Note */
-			article :global(p:last-child) {
-				border-top: 1px solid rgba(255, 255, 255, 0.1);
-				padding-top: 2rem;
+			/* Last paragraph = disclosure */
+			.article-content :global(p:last-child) {
 				margin-top: 3rem;
-				font-size: 0.95rem;
-				color: #888;
+				padding-top: 2rem;
+				border-top: 1px solid var(--border-color);
+				font-size: 0.9rem;
+				color: var(--text-muted);
 				font-style: italic;
 			}
 
-			/* Mobile Responsive */
 			@media (max-width: 768px) {
-				article {
+				.prose {
 					padding: 2rem 1.5rem;
 				}
 
-				.title {
+				.hero-image {
+					margin: -2rem -1.5rem 1.5rem -1.5rem;
+				}
+
+				.article-header h1 {
 					font-size: 2rem;
 				}
 
-				article :global(h1) {
-					font-size: 1.8rem;
-				}
-
-				article :global(h2) {
+				.article-content :global(h2) {
 					font-size: 1.5rem;
-				}
-
-				article :global(table) {
-					font-size: 0.9rem;
-				}
-
-				article :global(th),
-				article :global(td) {
-					padding: 0.7rem;
 				}
 			}
 		</style>
-	</head>
-
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<h1>{title}</h1>
-					</div>
-					<div class="date">
-						<FormattedDate date={pubDate} />
-						{
-							updatedDate && (
-								<div class="last-updated-on">
-									Last updated on <FormattedDate date={updatedDate} />
-								</div>
-							)
-						}
-					</div>
-					<hr />
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
 	</body>
 </html>
