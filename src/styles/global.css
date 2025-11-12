@@ -1,5 +1,21 @@
-/* Light Theme - Editorial/Magazine Style */
+/* Theme Variables - TRUE DARK MODE (Black/Dark Gray) */
 :root {
+	--bg-primary: #000000;
+	--bg-secondary: #111111;
+	--bg-tertiary: #1a1a1a;
+	--text-primary: #ffffff;
+	--text-secondary: #e0e0e0;
+	--text-muted: #a0a0a0;
+	--border-color: #333333;
+	--accent: #3b82f6;
+	--accent-hover: #60a5fa;
+	--success: #10b981;
+	--warning: #f59e0b;
+	--danger: #ef4444;
+}
+
+/* Light Mode */
+:root.light {
 	--bg-primary: #ffffff;
 	--bg-secondary: #f8f9fa;
 	--bg-tertiary: #e9ecef;
@@ -26,6 +42,7 @@ html {
 	color: var(--text-primary);
 	font-size: 18px;
 	line-height: 1.7;
+	transition: background 0.3s ease, color 0.3s ease;
 }
 
 body {
@@ -44,7 +61,7 @@ a:hover {
 	text-decoration: underline;
 }
 
-/* Wide layout - use more screen */
+/* Wide layout */
 .container-wide {
 	max-width: 1400px;
 	margin: 0 auto;

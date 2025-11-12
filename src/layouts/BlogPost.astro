@@ -52,266 +52,259 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<Footer />
 
 		<style>
-
-
-			
-			/* Article Container */
-			.article-container {
-				background: var(--bg-primary);
-				padding-bottom: 4rem;
-			}
-
-			/* Article Header */
-			.article-header {
-				background: var(--bg-secondary);
-				padding: 3rem 0 2rem;
-				border-bottom: 1px solid var(--border-color);
-			}
-
-			.hero-image {
-				max-width: 1200px;
-				margin: 0 auto 2rem;
-				padding: 0 3rem;
-			}
-
-			.hero-image img {
-				width: 100%;
-				height: auto;
-				border-radius: 8px;
-				box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-			}
-
-			h1 {
-				font-size: 2.8rem;
-				font-weight: 800;
-				line-height: 1.2;
-				margin-bottom: 1rem;
-				color: var(--text-primary);
-				letter-spacing: -0.5px;
-			}
-
-			.article-meta {
-				color: var(--text-muted);
-				font-size: 0.95rem;
-				padding-bottom: 0.5rem;
-			}
-
-			.updated {
-				font-style: italic;
-			}
-
-			/* Article Body - Wide, readable text */
-			.article-body {
-				padding-top: 2rem;
-				font-size: 1.05rem;
-				line-height: 1.8;
-			}
-
-			/* Typography */
-			.article-body :global(h2) {
-				font-size: 2rem;
-				font-weight: 700;
-				margin-top: 3rem;
-				margin-bottom: 1rem;
-				color: var(--text-primary);
-				padding-bottom: 0.5rem;
-				border-bottom: 2px solid var(--border-color);
-			}
-
-			.article-body :global(h3) {
-				font-size: 1.5rem;
-				font-weight: 600;
-				margin-top: 2.5rem;
-				margin-bottom: 0.75rem;
-				color: var(--text-primary);
-			}
-
-			.article-body :global(h4) {
-				font-size: 1.2rem;
-				font-weight: 600;
-				margin-top: 2rem;
-				margin-bottom: 0.5rem;
-				color: var(--text-secondary);
-			}
-
-			.article-body :global(p) {
-				color: var(--text-secondary);
-				margin-bottom: 1.5rem;
-			}
-
-			.article-body :global(strong) {
-				color: var(--text-primary);
-				font-weight: 700;
-			}
-
-			/* Links */
-			.article-body :global(a) {
-				color: var(--accent);
-				text-decoration: underline;
-				text-decoration-color: rgba(0, 102, 204, 0.3);
-				text-underline-offset: 2px;
-				font-weight: 600;
-			}
-
-			.article-body :global(a:hover) {
-				text-decoration-color: var(--accent);
-				color: var(--accent-hover);
-			}
-
-			/* Lists */
-			.article-body :global(ul),
-			.article-body :global(ol) {
-				margin-bottom: 1.5rem;
-				padding-left: 2rem;
-			}
-
-			.article-body :global(li) {
-				color: var(--text-secondary);
-				margin-bottom: 0.75rem;
-				line-height: 1.7;
-			}
-
-			.article-body :global(li strong) {
-				color: var(--text-primary);
-			}
-
-			/* Tables - Full width, editorial style */
-			.article-body :global(table) {
-				width: 100%;
-				border-collapse: collapse;
-				margin: 2.5rem 0;
-				background: var(--bg-secondary);
-				border: 1px solid var(--border-color);
-				font-size: 0.95rem;
-			}
-
-			.article-body :global(thead) {
-				background: var(--bg-tertiary);
-			}
-
-			.article-body :global(th) {
-				padding: 1rem;
-				text-align: left;
-				font-weight: 700;
-				color: var(--text-primary);
-				border-bottom: 2px solid var(--border-color);
-			}
-
-			.article-body :global(td) {
-				padding: 1rem;
-				color: var(--text-secondary);
-				border-bottom: 1px solid var(--border-color);
-			}
-
-			.article-body :global(tbody tr:hover) {
-				background: var(--bg-primary);
-			}
-
-			/* Code */
-			.article-body :global(code) {
-				background: var(--bg-tertiary);
-				color: var(--text-primary);
-				padding: 0.2rem 0.5rem;
-				border-radius: 4px;
-				font-size: 0.9em;
-				font-family: 'Courier New', monospace;
-				border: 1px solid var(--border-color);
-			}
-
-			.article-body :global(pre) {
-				background: var(--bg-tertiary);
-				border: 1px solid var(--border-color);
-				border-radius: 6px;
-				padding: 1.5rem;
-				overflow-x: auto;
-				margin: 2rem 0;
-			}
-
-			.article-body :global(pre code) {
-				background: none;
-				border: none;
-				padding: 0;
-			}
-
-			/* Blockquotes */
-			.article-body :global(blockquote) {
-				border-left: 4px solid var(--accent);
-				padding: 1rem 1.5rem;
-				margin: 2rem 0;
-				background: var(--bg-secondary);
-				color: var(--text-secondary);
-				font-style: italic;
-				border-radius: 0 4px 4px 0;
-			}
-
-			/* Horizontal Rule */
-			.article-body :global(hr) {
-				margin: 3rem 0;
-				border: none;
-				border-top: 2px solid var(--border-color);
-			}
-
-			/* Affiliate Disclosure */
-			.article-body :global(p:last-child) {
-				margin-top: 3rem;
-				padding-top: 2rem;
-				border-top: 2px solid var(--border-color);
-				font-size: 0.9rem;
-				color: var(--text-muted);
-				font-style: italic;
-				background: var(--bg-secondary);
-				padding: 1.5rem;
-				border-radius: 4px;
-			}
-
-			/* Responsive */
-			@media (max-width: 768px) {
-				h1 {
-					font-size: 2rem;
-				}
-
-				.hero-image {
-					padding: 0 1.5rem;
-				}
-
-				.article-body :global(h2) {
-					font-size: 1.6rem;
-				}
-
-				.article-body :global(h3) {
-					font-size: 1.3rem;
-				}
-
-				.article-body :global(table) {
-					font-size: 0.85rem;
-				}
-
-				.article-body :global(th),
-				.article-body :global(td) {
-					padding: 0.75rem;
-				}
-			}
-
-						/* Image captions */
-.article-body :global(img) {
-	border-radius: 8px;
-	box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-	margin: 2rem 0;
-}
-
-/* Two-column layout for comparison sections */
-.article-body :global(.columns-2) {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 2rem;
-	margin: 2rem 0;
-}
-
-@media (max-width: 768px) {
-	.article-body :global(.columns-2) {
-		grid-template-columns: 1fr;
+	/* Article Container */
+	.article-container {
+		background: var(--bg-primary);
+		padding-bottom: 4rem;
 	}
-}
-		</style>
+
+	/* Article Header */
+	.article-header {
+		background: var(--bg-secondary);
+		padding: 3rem 0 2rem;
+		border-bottom: 1px solid var(--border-color);
+		transition: background 0.3s ease;
+	}
+
+	.hero-image {
+		max-width: 1200px;
+		margin: 0 auto 2rem;
+		padding: 0 3rem;
+	}
+
+	.hero-image img {
+		width: 100%;
+		height: auto;
+		border-radius: 8px;
+		box-shadow: 0 4px 12px rgba(255,255,255,0.15);
+	}
+
+	/* Light mode image shadow */
+	:global(.light) .hero-image img {
+		box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+	}
+
+	h1 {
+		font-size: 2.8rem;
+		font-weight: 800;
+		line-height: 1.2;
+		margin-bottom: 1rem;
+		color: var(--text-primary);
+		letter-spacing: -0.5px;
+	}
+
+	.article-meta {
+		color: var(--text-muted);
+		font-size: 0.95rem;
+		padding-bottom: 0.5rem;
+	}
+
+	.updated {
+		font-style: italic;
+	}
+
+	/* Article Body */
+	.article-body {
+		padding-top: 2rem;
+		font-size: 1.05rem;
+		line-height: 1.8;
+	}
+
+	/* Typography */
+	.article-body :global(h2) {
+		font-size: 2rem;
+		font-weight: 700;
+		margin-top: 3rem;
+		margin-bottom: 1rem;
+		color: var(--text-primary);
+		padding-bottom: 0.5rem;
+		border-bottom: 2px solid var(--border-color);
+	}
+
+	.article-body :global(h3) {
+		font-size: 1.5rem;
+		font-weight: 600;
+		margin-top: 2.5rem;
+		margin-bottom: 0.75rem;
+		color: var(--text-primary);
+	}
+
+	.article-body :global(h4) {
+		font-size: 1.2rem;
+		font-weight: 600;
+		margin-top: 2rem;
+		margin-bottom: 0.5rem;
+		color: var(--text-secondary);
+	}
+
+	.article-body :global(p) {
+		color: var(--text-secondary);
+		margin-bottom: 1.5rem;
+	}
+
+	.article-body :global(strong) {
+		color: var(--text-primary);
+		font-weight: 700;
+	}
+
+	/* Links */
+	.article-body :global(a) {
+		color: var(--accent);
+		text-decoration: underline;
+		text-decoration-color: rgba(59, 130, 246, 0.3);
+		text-underline-offset: 2px;
+		font-weight: 600;
+	}
+
+	.article-body :global(a:hover) {
+		text-decoration-color: var(--accent);
+		color: var(--accent-hover);
+	}
+
+	/* Lists */
+	.article-body :global(ul),
+	.article-body :global(ol) {
+		margin-bottom: 1.5rem;
+		padding-left: 2rem;
+	}
+
+	.article-body :global(li) {
+		color: var(--text-secondary);
+		margin-bottom: 0.75rem;
+		line-height: 1.7;
+	}
+
+	.article-body :global(li strong) {
+		color: var(--text-primary);
+	}
+
+	/* Tables */
+	.article-body :global(table) {
+		width: 100%;
+		border-collapse: collapse;
+		margin: 2.5rem 0;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border-color);
+		font-size: 0.95rem;
+	}
+
+	.article-body :global(thead) {
+		background: var(--bg-tertiary);
+	}
+
+	.article-body :global(th) {
+		padding: 1rem;
+		text-align: left;
+		font-weight: 700;
+		color: var(--text-primary);
+		border-bottom: 2px solid var(--border-color);
+	}
+
+	.article-body :global(td) {
+		padding: 1rem;
+		color: var(--text-secondary);
+		border-bottom: 1px solid var(--border-color);
+	}
+
+	.article-body :global(tbody tr:hover) {
+		background: var(--bg-tertiary);
+	}
+
+	/* Code blocks */
+	.article-body :global(code) {
+		background: var(--bg-tertiary);
+		color: var(--text-primary);
+		padding: 0.2rem 0.5rem;
+		border-radius: 4px;
+		font-size: 0.9em;
+		font-family: 'Courier New', monospace;
+		border: 1px solid var(--border-color);
+	}
+
+	.article-body :global(pre) {
+		background: var(--bg-tertiary);
+		border: 1px solid var(--border-color);
+		border-radius: 6px;
+		padding: 1.5rem;
+		overflow-x: auto;
+		margin: 2rem 0;
+	}
+
+	.article-body :global(pre code) {
+		background: none;
+		border: none;
+		padding: 0;
+	}
+
+	/* Blockquotes */
+	.article-body :global(blockquote) {
+		border-left: 4px solid var(--accent);
+		padding: 1rem 1.5rem;
+		margin: 2rem 0;
+		background: var(--bg-secondary);
+		color: var(--text-secondary);
+		border-radius: 0 4px 4px 0;
+	}
+
+	/* Images */
+	.article-body :global(img) {
+		border-radius: 8px;
+		box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+		margin: 2rem 0;
+	}
+
+	:global(.light) .article-body :global(img) {
+		box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+	}
+
+	/* HR */
+	.article-body :global(hr) {
+		margin: 3rem 0;
+		border: none;
+		border-top: 2px solid var(--border-color);
+	}
+
+	/* Disclosure */
+	.article-body :global(p:last-child) {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 2px solid var(--border-color);
+		font-size: 0.9rem;
+		color: var(--text-muted);
+		font-style: italic;
+		background: var(--bg-secondary);
+		padding: 1.5rem;
+		border-radius: 4px;
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		h1 {
+			font-size: 2rem;
+		}
+
+		.hero-image {
+			padding: 0 1.5rem;
+		}
+
+		.article-body :global(h2) {
+			font-size: 1.6rem;
+		}
+
+		.article-body :global(h3) {
+			font-size: 1.3rem;
+		}
+
+		.article-body :global(table) {
+			font-size: 0.85rem;
+		}
+
+		.article-body :global(th),
+		.article-body :global(td) {
+			padding: 0.75rem;
+		}
+	}
+</style>
+
 	</body>
 </html>

@@ -47,94 +47,101 @@ const posts = (await getCollection('blog')).sort(
 		<Footer />
 
 		<style>
-			main {
-				background: var(--bg-primary);
-				min-height: 60vh;
-			}
+	main {
+		background: var(--bg-primary);
+		min-height: 60vh;
+	}
 
-			.page-header {
-				background: var(--bg-secondary);
-				padding: 3rem 0;
-				border-bottom: 1px solid var(--border-color);
-			}
+	.page-header {
+		background: var(--bg-secondary);
+		padding: 3rem 0;
+		border-bottom: 1px solid var(--border-color);
+		transition: background 0.3s ease;
+	}
 
-			.page-header h1 {
-				font-size: 2.5rem;
-				font-weight: 800;
-				margin-bottom: 0.5rem;
-				color: var(--text-primary);
-			}
+	.page-header h1 {
+		font-size: 2.5rem;
+		font-weight: 800;
+		margin-bottom: 0.5rem;
+		color: var(--text-primary);
+	}
 
-			.page-header p {
-				font-size: 1.2rem;
-				color: var(--text-secondary);
-			}
+	.page-header p {
+		font-size: 1.2rem;
+		color: var(--text-secondary);
+	}
 
-			.posts-list {
-				padding: 3rem 0;
-				display: grid;
-				gap: 1.5rem;
-			}
+	.posts-list {
+		padding: 3rem 0;
+		display: grid;
+		gap: 1.5rem;
+	}
 
-			.post-item {
-				background: var(--bg-secondary);
-				border: 1px solid var(--border-color);
-				border-left: 4px solid var(--border-color);
-				padding: 2rem;
-				transition: all 0.2s;
-			}
+	.post-item {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border-color);
+		border-left: 4px solid var(--border-color);
+		padding: 2rem;
+		transition: all 0.2s;
+	}
 
-			.post-item:hover {
-				border-left-color: var(--accent);
-				box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-			}
+	.post-item:hover {
+		border-left-color: var(--accent);
+		box-shadow: 0 4px 12px rgba(255,255,255,0.08);
+	}
 
-			.post-item a {
-				text-decoration: none;
-				color: inherit;
-				display: block;
-			}
+	/* Light mode hover */
+	:global(.light) .post-item:hover {
+		box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+	}
 
-			.post-item h2 {
-				font-size: 1.5rem;
-				font-weight: 700;
-				margin-bottom: 0.75rem;
-				color: var(--text-primary);
-			}
+	.post-item a {
+		text-decoration: none;
+		color: inherit;
+		display: block;
+	}
 
-			.post-item:hover h2 {
-				color: var(--accent);
-			}
+	.post-item h2 {
+		font-size: 1.5rem;
+		font-weight: 700;
+		margin-bottom: 0.75rem;
+		color: var(--text-primary);
+	}
 
-			.description {
-				color: var(--text-secondary);
-				margin-bottom: 1rem;
-				line-height: 1.6;
-			}
+	.post-item:hover h2 {
+		color: var(--accent);
+	}
 
-			.post-footer {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				color: var(--text-muted);
-				font-size: 0.95rem;
-			}
+	.description {
+		color: var(--text-secondary);
+		margin-bottom: 1rem;
+		line-height: 1.6;
+	}
 
-			.arrow {
-				color: var(--accent);
-				font-size: 1.5rem;
-				font-weight: 700;
-			}
+	.post-footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		color: var(--text-muted);
+		font-size: 0.95rem;
+	}
 
-			@media (max-width: 768px) {
-				.page-header h1 {
-					font-size: 2rem;
-				}
+	.arrow {
+		color: var(--accent);
+		font-size: 1.5rem;
+		font-weight: 700;
+	}
 
-				.post-item {
-					padding: 1.5rem;
-				}
-			}
-		</style>
+	@media (max-width: 768px) {
+		.page-header h1 {
+			font-size: 2rem;
+		}
+
+		.post-item {
+			padding: 1.5rem;
+		}
+	}
+</style>
+
 	</body>
 </html>
