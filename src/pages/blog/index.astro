@@ -15,60 +15,63 @@ const posts = (await getCollection('blog')).sort(
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Blog - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<BaseHead title={`All Reviews - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
-		<main class="container">
-			<div class="blog-header">
-				<h1>All Articles</h1>
-				<p>In-depth reviews and guides to help you choose the right tools</p>
+		<main>
+			<div class="page-header">
+				<div class="container-wide">
+					<h1>All Reviews & Comparisons</h1>
+					<p>Comprehensive guides to help you choose the right tools</p>
+				</div>
 			</div>
 
-			<section class="posts-list">
-				{posts.map((post) => (
-					<article class="post-item">
-						<a href={`/blog/${post.id.replace('.md', '')}/`}>
-							<div class="post-content">
+			<div class="container-wide">
+				<section class="posts-list">
+					{posts.map((post) => (
+						<article class="post-item">
+							<a href={`/blog/${post.id.replace('.md', '')}/`}>
 								<h2>{post.data.title}</h2>
-								<p class="post-description">{post.data.description}</p>
+								<p class="description">{post.data.description}</p>
 								<div class="post-footer">
 									<FormattedDate date={post.data.pubDate} />
-									<span class="read-indicator">→</span>
+									<span class="arrow">→</span>
 								</div>
-							</div>
-						</a>
-					</article>
-				))}
-			</section>
+							</a>
+						</article>
+					))}
+				</section>
+			</div>
 		</main>
 		<Footer />
 
 		<style>
-			.container {
-				max-width: 900px;
-				margin: 0 auto;
-				padding: 2rem;
+			main {
+				background: var(--bg-primary);
+				min-height: 60vh;
 			}
 
-			.blog-header {
-				text-align: center;
+			.page-header {
+				background: var(--bg-secondary);
 				padding: 3rem 0;
+				border-bottom: 1px solid var(--border-color);
 			}
 
-			.blog-header h1 {
+			.page-header h1 {
 				font-size: 2.5rem;
 				font-weight: 800;
 				margin-bottom: 0.5rem;
 				color: var(--text-primary);
 			}
 
-			.blog-header p {
-				font-size: 1.1rem;
+			.page-header p {
+				font-size: 1.2rem;
 				color: var(--text-secondary);
 			}
 
 			.posts-list {
+				padding: 3rem 0;
 				display: grid;
 				gap: 1.5rem;
 			}
@@ -76,30 +79,34 @@ const posts = (await getCollection('blog')).sort(
 			.post-item {
 				background: var(--bg-secondary);
 				border: 1px solid var(--border-color);
-				border-radius: 12px;
+				border-left: 4px solid var(--border-color);
+				padding: 2rem;
 				transition: all 0.2s;
 			}
 
 			.post-item:hover {
-				transform: translateY(-2px);
-				box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+				border-left-color: var(--accent);
+				box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 			}
 
 			.post-item a {
-				display: block;
-				padding: 2rem;
 				text-decoration: none;
 				color: inherit;
+				display: block;
 			}
 
-			.post-content h2 {
+			.post-item h2 {
 				font-size: 1.5rem;
 				font-weight: 700;
 				margin-bottom: 0.75rem;
+				color: var(--text-primary);
+			}
+
+			.post-item:hover h2 {
 				color: var(--accent);
 			}
 
-			.post-description {
+			.description {
 				color: var(--text-secondary);
 				margin-bottom: 1rem;
 				line-height: 1.6;
@@ -110,18 +117,22 @@ const posts = (await getCollection('blog')).sort(
 				justify-content: space-between;
 				align-items: center;
 				color: var(--text-muted);
-				font-size: 0.9rem;
+				font-size: 0.95rem;
 			}
 
-			.read-indicator {
+			.arrow {
 				color: var(--accent);
-				font-size: 1.2rem;
+				font-size: 1.5rem;
 				font-weight: 700;
 			}
 
 			@media (max-width: 768px) {
-				.blog-header h1 {
+				.page-header h1 {
 					font-size: 2rem;
+				}
+
+				.post-item {
+					padding: 1.5rem;
 				}
 			}
 		</style>

@@ -1,52 +1,104 @@
 <footer>
-	<div class="footer-container">
-		<div class="footer-links">
-			<a href="/">Home</a>
-			<a href="/blog">Blog</a>
-			<a href="/about">About</a>
-			<a href="/privacy">Privacy</a>
+	<div class="container-wide">
+		<div class="footer-content">
+			<div class="footer-section">
+				<h3>AI Tools Hub</h3>
+				<p>Honest reviews and comparisons to help you choose the right tools.</p>
+			</div>
+			
+			<div class="footer-section">
+				<h4>Navigation</h4>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/blog">All Reviews</a></li>
+					<li><a href="/about">About</a></li>
+					<li><a href="/privacy">Privacy Policy</a></li>
+				</ul>
+			</div>
+			
+			<div class="footer-section">
+				<h4>Contact</h4>
+				<p>
+					Email: <a href="mailto:contact@ai-tools-hub.com">contact@ai-tools-hub.com</a>
+				</p>
+			</div>
 		</div>
-		<p class="copyright">
-			© 2025 AI Tools Hub. All rights reserved.
-		</p>
+		
+		<div class="footer-bottom">
+			<p>© 2025 AI Tools Hub. All rights reserved.</p>
+		</div>
 	</div>
 </footer>
 
 <style>
 	footer {
-		margin-top: 5rem;
-		border-top: 1px solid var(--border-color);
-		background: var(--bg-secondary);
+		background: var(--bg-tertiary);
+		border-top: 2px solid var(--border-color);
+		margin-top: 4rem;
 	}
 
-	.footer-container {
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: 2rem;
-		text-align: center;
+	.footer-content {
+		display: grid;
+		grid-template-columns: 2fr 1fr 1fr;
+		gap: 3rem;
+		padding: 3rem 0 2rem;
 	}
 
-	.footer-links {
-		display: flex;
-		justify-content: center;
-		gap: 2rem;
-		margin-bottom: 1rem;
-		flex-wrap: wrap;
+	.footer-section h3 {
+		font-size: 1.5rem;
+		font-weight: 800;
+		margin-bottom: 0.75rem;
+		color: var(--text-primary);
 	}
 
-	.footer-links a {
+	.footer-section h4 {
+		font-size: 1.1rem;
+		font-weight: 700;
+		margin-bottom: 0.75rem;
+		color: var(--text-primary);
+	}
+
+	.footer-section p {
+		color: var(--text-secondary);
+		line-height: 1.6;
+	}
+
+	.footer-section ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.footer-section li {
+		margin-bottom: 0.5rem;
+	}
+
+	.footer-section a {
 		color: var(--text-secondary);
 		text-decoration: none;
-		font-weight: 500;
 		transition: color 0.2s;
 	}
 
-	.footer-links a:hover {
+	.footer-section a:hover {
 		color: var(--accent);
 	}
 
-	.copyright {
+	.footer-bottom {
+		border-top: 1px solid var(--border-color);
+		padding: 1.5rem 0;
+		text-align: center;
+	}
+
+	.footer-bottom p {
 		color: var(--text-muted);
 		font-size: 0.9rem;
+		margin: 0;
+	}
+
+	@media (max-width: 768px) {
+		.footer-content {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
 	}
 </style>

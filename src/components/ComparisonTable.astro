@@ -1,0 +1,60 @@
+---
+interface Props {
+	caption?: string;
+}
+
+const { caption } = Astro.props;
+---
+
+<div class="comparison-wrapper">
+	{caption && <div class="table-caption">{caption}</div>}
+	<div class="comparison-table">
+		<slot />
+	</div>
+</div>
+
+<style>
+	.comparison-wrapper {
+		margin: 2.5rem 0;
+		overflow-x: auto;
+	}
+
+	.table-caption {
+		font-weight: 700;
+		font-size: 1.1rem;
+		margin-bottom: 1rem;
+		color: var(--text-primary);
+	}
+
+	.comparison-table {
+		border: 2px solid var(--border-color);
+		border-radius: 8px;
+		overflow: hidden;
+	}
+
+	.comparison-table :global(table) {
+		width: 100%;
+		margin: 0;
+		border: none;
+	}
+
+	.comparison-table :global(thead) {
+		background: var(--accent);
+		color: white;
+	}
+
+	.comparison-table :global(th) {
+		color: white;
+		font-weight: 700;
+		padding: 1rem;
+		border-bottom: none;
+	}
+
+	.comparison-table :global(td) {
+		padding: 1rem;
+	}
+
+	.comparison-table :global(tbody tr:nth-child(even)) {
+		background: var(--bg-secondary);
+	}
+</style>

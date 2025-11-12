@@ -4,6 +4,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import '../styles/global.css';
 
 type Props = CollectionEntry<'blog'>['data'];
 
@@ -14,241 +15,303 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<link rel="stylesheet" href="/src/styles/global.css" />
 	</head>
 	<body>
 		<Header />
-		<main class="container">
-			<article class="prose">
-				{heroImage && (
-					<div class="hero-image">
-						<img width={1020} height={510} src={heroImage} alt="" />
+		<main>
+			<article class="article-container">
+				<div class="article-header">
+					{heroImage && (
+						<div class="hero-image">
+							<img width={1200} height={600} src={heroImage} alt={title} />
+						</div>
+					)}
+					
+					<div class="container-article">
+						<h1>{title}</h1>
+						<div class="article-meta">
+							<time datetime={pubDate.toISOString()}>
+								<FormattedDate date={pubDate} />
+							</time>
+							{updatedDate && (
+								<span class="updated">
+									· Updated <FormattedDate date={updatedDate} />
+								</span>
+							)}
+						</div>
 					</div>
-				)}
-				
-				<header class="article-header">
-					<h1>{title}</h1>
-					<div class="article-meta">
-						<FormattedDate date={pubDate} />
-						{updatedDate && (
-							<span class="updated">
-								Updated: <FormattedDate date={updatedDate} />
-							</span>
-						)}
-					</div>
-				</header>
+				</div>
 
-				<div class="article-content">
-					<slot />
+				<div class="container-article">
+					<div class="article-body">
+						<slot />
+					</div>
 				</div>
 			</article>
 		</main>
 		<Footer />
 
 		<style>
-			.container {
-				max-width: 800px;
-				margin: 0 auto;
-				padding: 2rem;
+
+
+			
+			/* Article Container */
+			.article-container {
+				background: var(--bg-primary);
+				padding-bottom: 4rem;
 			}
 
-			.prose {
+			/* Article Header */
+			.article-header {
 				background: var(--bg-secondary);
-				border: 1px solid var(--border-color);
-				border-radius: 12px;
-				padding: 3rem;
-				margin-top: 2rem;
+				padding: 3rem 0 2rem;
+				border-bottom: 1px solid var(--border-color);
 			}
 
 			.hero-image {
-				margin: -3rem -3rem 2rem -3rem;
-				border-radius: 12px 12px 0 0;
-				overflow: hidden;
+				max-width: 1200px;
+				margin: 0 auto 2rem;
+				padding: 0 3rem;
 			}
 
 			.hero-image img {
 				width: 100%;
 				height: auto;
-				display: block;
+				border-radius: 8px;
+				box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 			}
 
-			.article-header {
-				margin-bottom: 2rem;
-				padding-bottom: 2rem;
-				border-bottom: 1px solid var(--border-color);
-			}
-
-			.article-header h1 {
-				font-size: 2.5rem;
+			h1 {
+				font-size: 2.8rem;
 				font-weight: 800;
 				line-height: 1.2;
 				margin-bottom: 1rem;
 				color: var(--text-primary);
+				letter-spacing: -0.5px;
 			}
 
 			.article-meta {
-				display: flex;
-				gap: 1rem;
 				color: var(--text-muted);
 				font-size: 0.95rem;
+				padding-bottom: 0.5rem;
 			}
 
 			.updated {
 				font-style: italic;
 			}
 
-			/* Content Styles */
-			.article-content {
+			/* Article Body - Wide, readable text */
+			.article-body {
+				padding-top: 2rem;
+				font-size: 1.05rem;
 				line-height: 1.8;
 			}
 
-			.article-content :global(h2) {
-				font-size: 1.75rem;
+			/* Typography */
+			.article-body :global(h2) {
+				font-size: 2rem;
 				font-weight: 700;
-				margin-top: 2.5rem;
+				margin-top: 3rem;
 				margin-bottom: 1rem;
 				color: var(--text-primary);
+				padding-bottom: 0.5rem;
+				border-bottom: 2px solid var(--border-color);
 			}
 
-			.article-content :global(h3) {
-				font-size: 1.4rem;
+			.article-body :global(h3) {
+				font-size: 1.5rem;
 				font-weight: 600;
-				margin-top: 2rem;
+				margin-top: 2.5rem;
 				margin-bottom: 0.75rem;
 				color: var(--text-primary);
 			}
 
-			.article-content :global(h4) {
+			.article-body :global(h4) {
 				font-size: 1.2rem;
 				font-weight: 600;
-				margin-top: 1.5rem;
+				margin-top: 2rem;
 				margin-bottom: 0.5rem;
-				color: var(--text-primary);
+				color: var(--text-secondary);
 			}
 
-			.article-content :global(p) {
+			.article-body :global(p) {
 				color: var(--text-secondary);
 				margin-bottom: 1.5rem;
 			}
 
-			.article-content :global(strong) {
+			.article-body :global(strong) {
 				color: var(--text-primary);
 				font-weight: 700;
 			}
 
-			.article-content :global(a) {
+			/* Links */
+			.article-body :global(a) {
 				color: var(--accent);
 				text-decoration: underline;
-				text-decoration-color: rgba(59, 130, 246, 0.3);
+				text-decoration-color: rgba(0, 102, 204, 0.3);
 				text-underline-offset: 2px;
+				font-weight: 600;
 			}
 
-			.article-content :global(a:hover) {
+			.article-body :global(a:hover) {
 				text-decoration-color: var(--accent);
+				color: var(--accent-hover);
 			}
 
-			.article-content :global(ul),
-			.article-content :global(ol) {
+			/* Lists */
+			.article-body :global(ul),
+			.article-body :global(ol) {
 				margin-bottom: 1.5rem;
 				padding-left: 2rem;
 			}
 
-			.article-content :global(li) {
+			.article-body :global(li) {
 				color: var(--text-secondary);
-				margin-bottom: 0.5rem;
+				margin-bottom: 0.75rem;
+				line-height: 1.7;
 			}
 
-			.article-content :global(table) {
+			.article-body :global(li strong) {
+				color: var(--text-primary);
+			}
+
+			/* Tables - Full width, editorial style */
+			.article-body :global(table) {
 				width: 100%;
 				border-collapse: collapse;
-				margin: 2rem 0;
-				background: var(--bg-primary);
-				border-radius: 8px;
-				overflow: hidden;
+				margin: 2.5rem 0;
+				background: var(--bg-secondary);
+				border: 1px solid var(--border-color);
+				font-size: 0.95rem;
 			}
 
-			.article-content :global(thead) {
-				background: var(--bg-hover);
+			.article-body :global(thead) {
+				background: var(--bg-tertiary);
 			}
 
-			.article-content :global(th) {
-				padding: 0.75rem 1rem;
+			.article-body :global(th) {
+				padding: 1rem;
 				text-align: left;
-				font-weight: 600;
+				font-weight: 700;
 				color: var(--text-primary);
 				border-bottom: 2px solid var(--border-color);
 			}
 
-			.article-content :global(td) {
-				padding: 0.75rem 1rem;
+			.article-body :global(td) {
+				padding: 1rem;
 				color: var(--text-secondary);
 				border-bottom: 1px solid var(--border-color);
 			}
 
-			.article-content :global(code) {
-				background: var(--bg-hover);
-				color: var(--accent);
-				padding: 0.2rem 0.4rem;
+			.article-body :global(tbody tr:hover) {
+				background: var(--bg-primary);
+			}
+
+			/* Code */
+			.article-body :global(code) {
+				background: var(--bg-tertiary);
+				color: var(--text-primary);
+				padding: 0.2rem 0.5rem;
 				border-radius: 4px;
 				font-size: 0.9em;
 				font-family: 'Courier New', monospace;
+				border: 1px solid var(--border-color);
 			}
 
-			.article-content :global(pre) {
-				background: var(--bg-primary);
+			.article-body :global(pre) {
+				background: var(--bg-tertiary);
 				border: 1px solid var(--border-color);
-				border-radius: 8px;
+				border-radius: 6px;
 				padding: 1.5rem;
 				overflow-x: auto;
-				margin: 1.5rem 0;
+				margin: 2rem 0;
 			}
 
-			.article-content :global(pre code) {
+			.article-body :global(pre code) {
 				background: none;
+				border: none;
 				padding: 0;
 			}
 
-			.article-content :global(blockquote) {
-				border-left: 3px solid var(--accent);
-				padding-left: 1.5rem;
+			/* Blockquotes */
+			.article-body :global(blockquote) {
+				border-left: 4px solid var(--accent);
+				padding: 1rem 1.5rem;
 				margin: 2rem 0;
+				background: var(--bg-secondary);
 				color: var(--text-secondary);
 				font-style: italic;
+				border-radius: 0 4px 4px 0;
 			}
 
-			.article-content :global(hr) {
-				margin: 2rem 0;
+			/* Horizontal Rule */
+			.article-body :global(hr) {
+				margin: 3rem 0;
 				border: none;
-				border-top: 1px solid var(--border-color);
+				border-top: 2px solid var(--border-color);
 			}
 
-			/* Last paragraph = disclosure */
-			.article-content :global(p:last-child) {
+			/* Affiliate Disclosure */
+			.article-body :global(p:last-child) {
 				margin-top: 3rem;
 				padding-top: 2rem;
-				border-top: 1px solid var(--border-color);
+				border-top: 2px solid var(--border-color);
 				font-size: 0.9rem;
 				color: var(--text-muted);
 				font-style: italic;
+				background: var(--bg-secondary);
+				padding: 1.5rem;
+				border-radius: 4px;
 			}
 
+			/* Responsive */
 			@media (max-width: 768px) {
-				.prose {
-					padding: 2rem 1.5rem;
-				}
-
-				.hero-image {
-					margin: -2rem -1.5rem 1.5rem -1.5rem;
-				}
-
-				.article-header h1 {
+				h1 {
 					font-size: 2rem;
 				}
 
-				.article-content :global(h2) {
-					font-size: 1.5rem;
+				.hero-image {
+					padding: 0 1.5rem;
+				}
+
+				.article-body :global(h2) {
+					font-size: 1.6rem;
+				}
+
+				.article-body :global(h3) {
+					font-size: 1.3rem;
+				}
+
+				.article-body :global(table) {
+					font-size: 0.85rem;
+				}
+
+				.article-body :global(th),
+				.article-body :global(td) {
+					padding: 0.75rem;
 				}
 			}
+
+						/* Image captions */
+.article-body :global(img) {
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+	margin: 2rem 0;
+}
+
+/* Two-column layout for comparison sections */
+.article-body :global(.columns-2) {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 2rem;
+	margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+	.article-body :global(.columns-2) {
+		grid-template-columns: 1fr;
+	}
+}
 		</style>
 	</body>
 </html>

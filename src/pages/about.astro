@@ -3,56 +3,66 @@ import Layout from '../layouts/BlogPost.astro';
 ---
 
 <Layout
-	title="About"
-	description="About AI Tools Hub"
-	pubDate={new Date('November 11 2025')}
+	title="About AI Tools Hub"
+	description="Learn more about our mission to provide honest AI tool reviews"
+	pubDate={new Date('November 12 2025')}
 >
 	<div class="about-content">
 		<h2>About AI Tools Hub</h2>
 		
 		<p>
-			We're a team of developers and content creators who got tired of wasting hours 
-			comparing AI tools. So we built this site to save you time.
+			We're on a mission to cut through the noise and provide honest, practical reviews 
+			of AI tools that actually matter to content creators, marketers, and business owners.
 		</p>
 
-		<h3>What We Do</h3>
+		<h3>Why We Exist</h3>
 		<p>
-			We test AI tools, compare features, and publish honest reviews. No marketing fluff. 
-			Just real data from real testing.
+			The AI tools landscape is crowded and confusing. Every week brings a new "revolutionary" 
+			tool, but which ones are actually worth your time and money? We test them so you don't have to.
 		</p>
 
-		<h3>Why Trust Us?</h3>
+		<h3>Our Review Process</h3>
 		<ul>
-			<li>Every tool is tested hands-on</li>
-			<li>We include both pros and cons</li>
-			<li>We update reviews as tools evolve</li>
-			<li>We disclose all affiliate relationships</li>
+			<li><strong>Hands-on testing:</strong> We actually use every tool we review</li>
+			<li><strong>Real scenarios:</strong> We test with actual work, not toy examples</li>
+			<li><strong>Honest opinions:</strong> We highlight both strengths and weaknesses</li>
+			<li><strong>Regular updates:</strong> Tools evolve, so do our reviews</li>
 		</ul>
 
-		<h3>Who We Help</h3>
+		<h3>Transparency</h3>
 		<p>
-			Content creators, developers, marketers, and anyone looking to leverage AI 
-			without wasting money on the wrong tools.
+			We believe in full transparency. Some links on this site are affiliate links, meaning 
+			we may earn a commission if you make a purchase. This comes at no extra cost to you 
+			and helps us keep the lights on.
+		</p>
+		
+		<p>
+			Our reviews remain honest and unbiased regardless of affiliate relationships. If a tool 
+			isn't good, we'll tell you – even if there's money on the table.
 		</p>
 
-		<h3>Contact</h3>
+		<h3>Get in Touch</h3>
 		<p>
-			Questions or suggestions? Email us at: 
+			Have a question? Want us to review a specific tool? Drop us a line at: 
 			<a href="mailto:contact@ai-tools-hub.com">contact@ai-tools-hub.com</a>
 		</p>
 	</div>
 
 	<style>
+		.about-content {
+			max-width: 800px;
+		}
+
 		.about-content h3 {
-			margin-top: 2rem;
+			margin-top: 2.5rem;
 		}
 
 		.about-content ul {
-			list-style-position: inside;
+			margin: 1rem 0;
 		}
 
 		.about-content li {
-			margin-bottom: 0.5rem;
+			margin-bottom: 0.75rem;
 		}
 	</style>
 </Layout>
