@@ -15,12 +15,17 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, description, image = FallbackImage } = Astro.props;
+
+// SEO improvements
+const siteTitle = "Toolgrade - AI Tools Reviews & Comparisons";
+const fullTitle = title.includes('Toolgrade') ? title : `${title} | ${siteTitle}`;
+const keywords = "AI tools, AI reviews, ChatGPT, CustomGPT, business AI, enterprise AI, AI chatbots, AI comparisons, AI tool reviews, best AI tools";
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/svg+xml" href="/favicon.png" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
 	rel="alternate"
@@ -38,24 +43,34 @@ const { title, description, image = FallbackImage } = Astro.props;
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Primary Meta Tags -->
-<title>{title}</title>
-<meta name="title" content={title} />
+<title>{fullTitle}</title>
+<meta name="title" content={fullTitle} />
 <meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
 <meta name='impact-site-verification' value='d0782eab-c9b4-482d-ae84-d43d22360617'>
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
+<meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(image.src, Astro.url)} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
+<meta property="twitter:title" content={fullTitle} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-40M0PY5KN4"></script>
+<script is:inline>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-40M0PY5KN4');
+</script>
 
 <!-- Theme initialization script (prevents flash) -->
 <script is:inline>

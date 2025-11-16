@@ -15,6 +15,21 @@ const posts = (await getCollection('blog'))
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<!-- Structured Data -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "WebSite",
+				"name": "Toolgrade",
+				"url": "https://toolgrade.xyz",
+				"description": "AI Tools Reviews & Comparisons - Find the Best AI Solutions for Your Business",
+				"potentialAction": {
+					"@type": "SearchAction",
+					"target": "https://toolgrade.xyz/blog?q={search_term_string}",
+					"query-input": "required name=search_term_string"
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<Header />
