@@ -1,27 +1,38 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
 ---
 
-<Layout title="Page Not Found - Toolgrade">
-	<main class="error-page">
-		<div class="container-wide">
-			<div class="error-content">
-				<h1 class="error-code">404</h1>
-				<h2 class="error-title">Page Not Found</h2>
-				<p class="error-description">Sorry, the page you're looking for doesn't exist or has been moved.</p>
-				
-				<div class="error-actions">
-					<a href="/" class="btn-primary">
-						← Go to Homepage
-					</a>
-					<a href="/blog" class="btn-secondary">
-						Browse AI Tools Reviews
-					</a>
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Page Not Found - Toolgrade" description="The page you're looking for doesn't exist." />
+	</head>
+	<body>
+		<Header />
+		<main class="error-page">
+			<div class="container-wide">
+				<div class="error-content">
+					<h1 class="error-code">404</h1>
+					<h2 class="error-title">Page Not Found</h2>
+					<p class="error-description">Sorry, the page you're looking for doesn't exist or has been moved.</p>
+					
+					<div class="error-actions">
+						<a href="/" class="btn-primary">
+							← Go to Homepage
+						</a>
+						<a href="/blog" class="btn-secondary">
+							Browse AI Tools Reviews
+						</a>
+					</div>
 				</div>
 			</div>
-		</div>
-	</main>
-</Layout>
+		</main>
+		<Footer />
+	</body>
+</html>
 
 <style>
 	.error-page {
